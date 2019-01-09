@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <div class="wrapper">
-      <Mheader/>
+      <Mheader>
+        <i class="icon" :class="{btnOpen: visible}" slot="iconW" @click='toogleMenu'></i>
+      </Mheader>
+      <Menu :my-visible.sync = "visible" />
       <router-view/>
       <Footer/>
     </div>
@@ -11,11 +14,23 @@
 
 <script>
 import Mheader from './components/mheader/mheader'
+import Menu from './components/menu/menu'
 import Footer from './components/footer/footer'
 export default {
   name: 'App',
+  data () {
+    return {
+      visible: false
+    }
+  },
+  methods: {
+    toogleMenu () {
+      this.visible = !this.visible
+    }
+  },
   components: {
     Mheader,
+    Menu,
     Footer
   }
 }

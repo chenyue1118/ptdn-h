@@ -2,32 +2,49 @@
   <div class="mheader">
     <div class="header">
       <i class="logo"></i>
-      <img v-if="navListShow" class="btn btn-open" src="./icon-nav.png">
-      <img v-else class="btn btn-close" src="./icon-nav_close.png">
+      <a class="menu">
+        <slot name="iconW"></slot>
+      </a>
     </div>
-    <ul class="nav">
-      <li class="item" v-for="(item, index) in navs" :key="index">{{item.lable}}</li>
-    </ul>
   </div>
 </template>
 
 <script>
 export default {
   data () {
-    return {
-      navListShow: true,
-      navs: [{
-        'name': 'index',
-        'lable': '导航1'
-      }, {
-        'name': 'index2',
-        'lable': '导航2'
-      }]
-    }
+    return {}
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.mheader{
+  width: 100%;
+  height: 65px;
+  padding: 0 10px;
+  .header{
+    display: flex;
+    width: 100%;
+    height: 65px;
+    .logo{
+      flex: 1;
+      background: url(../../common/image/icon-logo.png) no-repeat left center;
+      background-size: 100px;
+    }
+    .menu{
+      flex: 0 0 32px;
+      .icon{
+        display: block;
+        width: 32px;
+        height: 65px;
+        background: url(icon-nav.png) no-repeat center;
+        background-size: 20px 20px;
+      }
+      .btnOpen{
+        background: url(icon-nav_close.png) no-repeat center;
+        background-size: 20px 20px;
+      }
+    }
+  }
+}
 </style>
