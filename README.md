@@ -7,7 +7,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at 0.0.0.0:9020
+# serve with hot reload at 0.0.0.0:9020-1
 npm run dev
 
 # build for production with minification
