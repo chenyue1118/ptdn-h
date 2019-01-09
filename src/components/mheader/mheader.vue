@@ -19,9 +19,15 @@ export default {
 
 <style lang="scss" scoped>
 .mheader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 11;
   width: 100%;
   height: 65px;
   padding: 0 10px;
+  background: #fff;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.6);
   .header{
     display: flex;
     width: 100%;

@@ -44,6 +44,7 @@ export default {
 .menu-wrapper{
   position: fixed;
   top: 65px;
+  z-index: 1111;
   width: 100%;
   height: calc(100% - 65px);
   background: pink;
