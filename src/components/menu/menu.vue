@@ -1,7 +1,10 @@
 <template lang="html">
   <div class="menu-wrapper" v-if="myVisible">
     <ul class="menu">
-      <li class="item" v-for="(item, index) in navs" :key="index">{{item.lable}}</li>
+      <li class="item" v-for="(item, index) in navs" :key="index" @click="linkTo(item)">
+        <span class="name">{{item.lable}}</span>
+        <span class="nameen">{{item.nameen}}</span>
+      </li>
     </ul>
   </div>
 </template>
@@ -18,23 +21,37 @@ export default {
     return {
       navs: [{
         'name': 'index',
-        'lable': '导航1'
+        'lable': '首页',
+        'nameen': 'ABOUT  US'
       }, {
-        'name': 'index2',
-        'lable': '导航2'
+        'name': 'joinus',
+        'lable': '加入我们',
+        'nameen': 'ABOUT  US'
       }, {
-        'name': 'index3',
-        'lable': '导航3'
+        'name': 'morenews',
+        'lable': '更多新闻',
+        'nameen': 'ABOUT  US'
       }, {
-        'name': 'index4',
-        'lable': '导航4'
+        'name': 'news',
+        'lable': '新闻详情',
+        'nameen': 'ABOUT  US'
       }, {
-        'name': 'index5',
-        'lable': '导航5'
+        'name': 'product',
+        'lable': '产品展示',
+        'nameen': 'ABOUT  US'
       }, {
-        'name': 'index6',
-        'lable': '导航6'
+        'name': 'profile',
+        'lable': '公司简介',
+        'nameen': 'ABOUT  US'
       }]
+    }
+  },
+  methods: {
+    linkTo (item) {
+      this.$emit('update:myVisible', false)
+      this.$router.push({
+        path: item.name
+      })
     }
   }
 }
@@ -47,21 +64,44 @@ export default {
   z-index: 1111;
   width: 100%;
   height: calc(100% - 65px);
-  background: pink;
+  background: #000;
   .menu{
     width: 100%;
     height: 100%;
     .item{
       height: 16.66%;
+      padding-left: 40px;
       font-size: 12px;
-      border-bottom: 1px solid #333;
+      background: #3f3f42;
+      .name{
+        display: block;
+        height:50%;
+        padding-top: 20px;
+        font-size: 20px;
+        color: #ffffff;
+      }
+      .nameen{
+        display: block;
+        height: 50%;
+        font-size: 18px;
+        color: #b2b2b2;
+      }
+    }
+    .item:nth-child(2){
+      background: #313134;
+    }
+    .item:nth-child(3){
+      background: #212122;
+    }
+    .item:nth-child(4){
+      background: #151517;
+    }
+    .item:nth-child(5){
+      background: #0e0e0f;
+    }
+    .item:nth-child(6){
+      background: #000000;
     }
   }
 }
-// .menu{
-//   position: relative;
-//   top: 45px;
-//   width: 100%;
-//   background: #fff;
-// }
 </style>
