@@ -2,10 +2,11 @@
   <div class="index">
     <div class="banner">
       <mt-swipe :auto="5000">
-       <mt-swipe-item class="items">
+       <mt-swipe-item class="items" v-for="(item, index) in bannerArr" :key="index">
+         <img class="image" :src="item.picture" alt="">
          <div class="item">
-           <h4 class="title">秋日登山</h4>
-           <p class="con">2018年<br /> 员工会系列活动</p>
+           <h4 class="title">{{item.title}}</h4>
+           <p class="con">2019年<br /> {{item.description}}</p>
          </div>
          <span class="msg">普天动能   美好出行</span>
        </mt-swipe-item>
@@ -115,16 +116,40 @@
     </div>
   </div>
 </template>
-
 <script>
+import axios from 'axios'
+import qs from 'qs'
 import { Swipe, SwipeItem } from 'mint-ui'
+import { APIYRL } from '@/common/api'
 export default {
+  data () {
+    return {
+      bannerArr: []
+    }
+  },
   created () {
-    // this.indexInit()
+    setTimeout(() => {
+      this._getBanner()
+    }, 20)
   },
   methods: {
     indexInit () {
       // Toast('提示信息')
+    },
+    _getBanner () {
+      let articleInfo = qs.stringify({
+        'rollingType': 1
+      })
+      axios(`${APIYRL}/rolling.do?method=showRollingPicture`, {
+        method: 'GET',
+        data: articleInfo
+      }).then(response => {
+        if (response.data.code === 0) {
+          this.bannerArr = response.data.result
+        } else {
+          // Toast('查询失败')
+        }
+      })
     }
   },
   components: {
@@ -146,6 +171,13 @@ export default {
       height: 216px;
       background: url(../../common/image/banner-bg1.jpg) no-repeat center;
       background-size: cover;
+      // background: url(../../common/image/banner-bg1.jpg) no-repeat center;
+      // background-size: cover;
+      .image{
+        position: absolute;
+        width: 100%;
+        height: 216px;
+      }
       .item{
         position: absolute;
         top: 44px;

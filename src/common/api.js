@@ -1,5 +1,5 @@
+export const APIYRL = 'http://139.129.203.44:8680'
 export const COMMON = {
-  'APIURL': 'http://192.168.1.67:8096', // server端接口地址
   getCookie (name) {
     let reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
     let arr = document.cookie.match(reg)
