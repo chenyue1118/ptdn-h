@@ -5,6 +5,7 @@
         <i class="icon" :class="{btnOpen: visible}" slot="iconW" @click='toogleMenu'></i>
       </Mheader>
       <Menu :my-visible.sync = "visible" />
+      <div class="seize"></div>
       <router-view/>
       <Footer/>
     </div>
@@ -40,5 +41,8 @@ export default {
 .wrapper{
   width: 100%;
   background: #fff;
+  .seize{
+    height: 65px;
+  }
 }
 </style>
