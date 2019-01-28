@@ -17,7 +17,7 @@ export default new Router({
       component: Index
     }, {
       path: '/index',
-      name: 'index',
+      name: '首页',
       component: Index
     }, {
       path: '/joinus',

@@ -19,14 +19,15 @@
         <h4 class="tit">公司新闻</h4>
       </div>
       <div class="company-body">
-        <mt-swipe :auto="5000">
-         <mt-swipe-item class="items" :show-indicators="false">
-           <div class="item">
+        <mt-swipe :auto="15000">
+         <mt-swipe-item class="items" :show-indicators="false" v-for="(item, index) in listData" :key="index">
+           <a class="item">
+             <img class="image" :src="item.pictureUrl" alt="">
              <div class="info">
-               <h4 class="con">“中国科学技术大学中国科学技术大学磋商公告“</h4>
-               <span class="time">2018/10/12</span>
+               <h4 class="con">{{item.title}}</h4>
+               <span class="time">{{item.createDate.substr(0, 10)}}</span>
              </div>
-           </div>
+           </a>
          </mt-swipe-item>
         </mt-swipe>
       </div>
@@ -39,13 +40,15 @@
       </div>
       <div class="company-body">
         <mt-swipe :auto="5000">
-         <mt-swipe-item class="items" :show-indicators="false">
-           <div class="item">
+         <mt-swipe-item class="items" :show-indicators="false" v-for="(item, index) in industry" :key="index">
+           <a class="item">
+             <img v-if="item.pictureUrl" class="image" :src="item.pictureUrl" alt="">
+             <img v-else class="image" src="../../common/image/icon-company.jpg" alt="">
              <div class="info">
-               <h4 class="con">“中国科学技术大学中国科学技术大学磋商公告“</h4>
-               <span class="time">2018/10/12</span>
+               <h4 class="con">{{item.title}}</h4>
+               <span class="time">{{item.createDate.substr(0, 10)}}</span>
              </div>
-           </div>
+           </a>
          </mt-swipe-item>
         </mt-swipe>
       </div>
@@ -57,15 +60,15 @@
         <h4 class="tit">相关产品</h4>
       </div>
       <ul class="product-body">
-        <li class="items">
+        <li class="items" v-for="(item, index) in deData" :key="index">
           <div class="mask">
             <div class="item">
-              <h4 class="title">1234产品</h4>
-              <span class="msg">一声春雷响彻雄州大地，习总书记亲自谋划的雄安。记亲自谋划的雄安。。。。成立，这是千年大计，国家大事</span>
+              <h4 class="title">{{item.title}}</h4>
+              <span class="msg">{{item.title}}</span>
             </div>
           </div>
         </li>
-        <li class="items">
+        <!-- <li class="items">
           <div class="mask">
             <div class="item">
               <h4 class="title">1234产品</h4>
@@ -80,7 +83,7 @@
               <span class="msg">一声春雷响彻雄州大地，习总书记亲自谋划的雄安。记亲自谋划的雄安。。。。成立，这是千年大计，国家大事…一声春雷响彻雄州大地，习总书记亲自谋划的雄安。记亲自谋划的雄安。。。。成立，这是千年大计，国家大事…</span>
             </div>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
     <div class="project">
@@ -90,7 +93,18 @@
         <h4 class="tit">项目案例</h4>
       </div>
       <ul class="project-body">
-        <li class="items">
+        <li class="items" v-for="(item, index) in caseData" :key="index">
+          <a class="item" href="javascript:;">
+            <div class="info">
+              <span class="tit">{{item.title}}</span>
+              <span class="und">进一步了解 ></span>
+            </div>
+          </a>
+          <div class="desc">
+            {{item.title}}
+          </div>
+        </li>
+        <!-- <li class="items">
           <a class="item" href="javascript:;">
             <div class="info">
               <span class="tit">123项目</span>
@@ -100,18 +114,7 @@
           <div class="desc">
             一声春雷响彻雄州大地，习总书记亲自谋划的雄安。记亲自谋划的雄安。。。。成立，这是千年大计，国家大事…
           </div>
-        </li>
-        <li class="items">
-          <a class="item" href="javascript:;">
-            <div class="info">
-              <span class="tit">123项目</span>
-              <span class="und">进一步了解 ></span>
-            </div>
-          </a>
-          <div class="desc">
-            一声春雷响彻雄州大地，习总书记亲自谋划的雄安。记亲自谋划的雄安。。。。成立，这是千年大计，国家大事…
-          </div>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
@@ -124,12 +127,20 @@ import { APIYRL } from '@/common/api'
 export default {
   data () {
     return {
-      bannerArr: []
+      bannerArr: [],
+      listData: [],
+      industry: [],
+      deData: [],
+      caseData: []
     }
   },
   created () {
     setTimeout(() => {
       this._getBanner()
+      this._getList()
+      this._getIndustry()
+      this._getProduct()
+      this._getCase()
     }, 20)
   },
   methods: {
@@ -146,6 +157,57 @@ export default {
       }).then(response => {
         if (response.data.code === 0) {
           this.bannerArr = response.data.result
+        } else {
+          // Toast('查询失败')
+        }
+      })
+    },
+    _getList () {
+      axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=21&pageSize=10&pageNo=1`, {
+        method: 'GET'
+      }).then(response => {
+        if (response.data.code === 0) {
+          this.listData = response.data.result.data
+        } else {
+          // Toast('查询失败')
+        }
+      })
+    },
+    _getIndustry () {
+      axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=22&pageSize=10&pageNo=1`, {
+        method: 'GET'
+      }).then(response => {
+        if (response.data.code === 0) {
+          this.industry = response.data.result.data
+        } else {
+          // Toast('查询失败')
+        }
+      })
+    },
+    _getProduct () {
+      axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=31&pageSize=3&pageNo=1`, {
+        method: 'GET'
+      }).then(response => {
+        console.log(response.data)
+        if (response.data.code === 0) {
+          if (response.data.result.data.length > 0) {
+            this.deData = [...response.data.result.data]
+            console.log(this.deData)
+          }
+        } else {
+          // Toast('查询失败')
+        }
+      })
+    },
+    _getCase () {
+      axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=41&pageSize=4&pageNo=1`, {
+        method: 'GET'
+      }).then(response => {
+        console.log(response.data)
+        if (response.data.code === 0) {
+          if (response.data.result.data.length > 0) {
+            this.caseData = [...response.data.result.data]
+          }
         } else {
           // Toast('查询失败')
         }
@@ -254,11 +316,18 @@ export default {
         height: 200px;
         background: pink;
         .item{
+          display: block;
           position: relative;
           width: 100%;
           height: 200px;
-          background: url(../../common/image/icon-company.jpg) no-repeat center;
-          background-size: cover;
+          // background: url(../../common/image/icon-company.jpg) no-repeat center;
+          // background-size: cover;
+          .image{
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 200px;
+          }
           .info{
             position: absolute;
             top: 180px;
@@ -416,6 +485,9 @@ export default {
               padding-left: 16px;
               font-size: 16px;
               color: #fff;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
             }
             .und{
               display: inline-block;
