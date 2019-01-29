@@ -4,10 +4,10 @@
     <div class="types">
       <!-- <h4 class="all">全部</h4> -->
       <ul class="items">
-        <li class="item" :class="{active: index == 51}" @click="selectType(51)">智慧农业</li>
-        <li class="item" :class="{active: index == 52}" @click="selectType(52)">智慧农业温棚</li>
-        <li class="item" :class="{active: index == 53}" @click="selectType(53)">智慧农业大田</li>
-        <li class="item" :class="{active: index == 54}" @click="selectType(54)">智慧农业大田</li>
+        <li class="item" :class="{active: index == 31}" @click="selectType(31)">智慧农业</li>
+        <li class="item" :class="{active: index == 32}" @click="selectType(32)">智慧农业温棚</li>
+        <li class="item" :class="{active: index == 33}" @click="selectType(33)">智慧农业大田</li>
+        <li class="item" :class="{active: index == 34}" @click="selectType(34)">智慧农业大田</li>
       </ul>
     </div>
     <ul class="content">
@@ -59,7 +59,7 @@ import { Toast } from 'mint-ui'
 export default {
   data () {
     return {
-      index: 51,
+      index: 32,
       current: 1,
       deData: []
     }

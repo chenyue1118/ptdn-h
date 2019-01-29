@@ -32,11 +32,15 @@ export default {
         'lable': '更多新闻',
         'nameen': 'ABOUT  US'
       }, {
-        'name': 'news',
-        'lable': '新闻详情',
+        'name': 'product',
+        'lable': '解决方案',
         'nameen': 'ABOUT  US'
       }, {
         'name': 'product',
+        'lable': '产品案例',
+        'nameen': 'ABOUT  US'
+      }, {
+        'name': 'exhibition',
         'lable': '产品展示',
         'nameen': 'ABOUT  US'
       }, {
@@ -68,8 +72,11 @@ export default {
   .menu{
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
     .item{
-      height: 16.66%;
+      flex: 1;
+      // height: 16.66%;
       padding-left: 40px;
       font-size: 12px;
       background: #3f3f42;
@@ -100,6 +107,9 @@ export default {
       background: #0e0e0f;
     }
     .item:nth-child(6){
+      background: #0c0c0c;
+    }
+    .item:nth-child(7){
       background: #000000;
     }
   }

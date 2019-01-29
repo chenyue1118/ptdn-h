@@ -6,6 +6,8 @@ import News from '@/components/content/news'
 import Profile from '@/components/content/profile'
 import Morenews from '@/components/content/morenews'
 import Product from '@/components/content/product'
+import Case from '@/components/content/case'
+import Exhibition from '@/components/content/exhibition'
 
 Vue.use(Router)
 
@@ -39,6 +41,14 @@ export default new Router({
       path: '/product',
       name: 'Product',
       component: Product
+    }, {
+      path: '/exhibition',
+      name: 'Exhibition',
+      component: Exhibition
+    }, {
+      path: '/case',
+      name: 'Case',
+      component: Case
     }
   ]
 })

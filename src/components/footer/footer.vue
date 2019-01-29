@@ -15,6 +15,10 @@ export default {
 
 <style lang="scss" scoped>
 .footer{
+  // position: fixed;
+  // bottom: 0;
+  // left: 0;
+  // width: 100%;
   padding: 24px 0 40px 0;
   background: #323332;
   .icon{

@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="more_">
     <Mnav />
-    <ul class="items">
+    <!-- <ul class="items">
       <li class="item">
         <img class="image" src="../../common/image/icon-more-news.jpg" >
         <div class="con">
@@ -32,14 +32,85 @@
           <h3 class="tit">中国科学技术大学中国科学技术大学磋商公告</h3>
         </div>
       </li>
-    </ul>
+    </ul> -->
+    <mt-loadmore :bottom-method="loadBottom" @bottom-status-change="handleTopChange">
+      <ul class="items">
+        <li class="item" v-for="(item, index) in newList" :key="index" @click="newDetail(item)">
+          <!-- <img class="image" src="../../common/image/icon-more-news.jpg" > -->
+          <img v-if="item.pictureUrl" class="image" :src="item.pictureUrl" :onerror="imageError">
+          <img v-else class="image" src="../../common/image/icon-more-news.jpg" :onerror="imageError">
+          <div class="con">
+            <div class="time">
+              <span class="num">14</span>
+              <span class="hou">2018-11</span>
+            </div>
+            <h3 class="tit">{{item.title}}</h3>
+          </div>
+        </li>
+      </ul>
+      <div slot="top" class="mint-loadmore-top">
+        <span v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">↓</span>
+        <span v-show="topStatus === 'loading'">Loading...</span>
+      </div>
+    </mt-loadmore>
   </div>
 </template>
 
 <script>
 import Mnav from './nav'
-
+import axios from 'axios'
+import { APIYRL } from '@/common/api'
+import { Toast, Indicator } from 'mint-ui'
 export default {
+  data () {
+    return {
+      newList: [],
+      index: 21,
+      current: 1,
+      totalRows: 1,
+      topStatus: '',
+      imageError: `this.src="../../common/image/icon-more-news.jpg"`
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.newList.length = 0
+      vm._getNews()
+    })
+  },
+  methods: {
+    _getNews () {
+      Indicator.open()
+      axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=${this.index}&pageSize=10&pageNo=${this.current}`, {
+        method: 'GET'
+      }).then(response => {
+        if (response.data.code === 0) {
+          this.totalRows = response.data.result.totalRows
+          this.newList = [...this.newList, ...response.data.result.data]
+          Indicator.close()
+        } else {
+          Toast('查询失败')
+        }
+      })
+    },
+    newDetail (item) {
+      // 新闻详情
+      this.$router.push({
+        path: '/news',
+        query: {
+          id: item.id
+        }
+      })
+    },
+    loadBottom () {},
+    handleTopChange (status) {
+      this.topStatus = status
+      if (status === 'loading' && (parseInt(this.current) * this.current) < this.totalRows) {
+        this.current = parseInt(this.current) + 1
+        this._getNews()
+      }
+    }
+  },
   components: {
     Mnav
   }
@@ -59,12 +130,16 @@ export default {
       .image{
         display: block;
         width: 100%;
+        height: 248px;
       }
       .con{
+        width: 100%;
         padding-top: 16px;
         font-size: 0;
+        display: flex;
         .time{
-          display: inline-block;
+          // display: inline-block;
+          flex: 0 0 50px;
           width: 50px;
           height: 50px;
           background: #ebf0f5;
@@ -87,7 +162,8 @@ export default {
           }
         }
         .tit{
-          display: inline-block;
+          // display: inline-block;
+          flex: 1;
           height: 50px;
           line-height: 50px;
           font-size: 13px;
@@ -96,6 +172,8 @@ export default {
           font-weight: 600;
           overflow: hidden;
           vertical-align: top;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }

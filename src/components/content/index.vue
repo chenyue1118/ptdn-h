@@ -21,7 +21,7 @@
       <div class="company-body">
         <mt-swipe :auto="15000">
          <mt-swipe-item class="items" :show-indicators="false" v-for="(item, index) in listData" :key="index">
-           <a class="item">
+           <a class="item" @click="newDetail(item.id)">
              <img class="image" :src="item.pictureUrl" alt="">
              <div class="info">
                <h4 class="con">{{item.title}}</h4>
@@ -41,7 +41,7 @@
       <div class="company-body">
         <mt-swipe :auto="5000">
          <mt-swipe-item class="items" :show-indicators="false" v-for="(item, index) in industry" :key="index">
-           <a class="item">
+           <a class="item" @click="newDetail(item.id)">
              <img v-if="item.pictureUrl" class="image" :src="item.pictureUrl" alt="">
              <img v-else class="image" src="../../common/image/icon-company.jpg" alt="">
              <div class="info">
@@ -60,7 +60,7 @@
         <h4 class="tit">相关产品</h4>
       </div>
       <ul class="product-body">
-        <li class="items" v-for="(item, index) in deData" :key="index">
+        <li class="items" v-for="(item, index) in deData" :key="index" @click="newDetail(item.id)">
           <div class="mask">
             <div class="item">
               <h4 class="title">{{item.title}}</h4>
@@ -93,7 +93,7 @@
         <h4 class="tit">项目案例</h4>
       </div>
       <ul class="project-body">
-        <li class="items" v-for="(item, index) in caseData" :key="index">
+        <li class="items" v-for="(item, index) in caseData" :key="index" @click="newDetail(item.id)">
           <a class="item" href="javascript:;">
             <div class="info">
               <span class="tit">{{item.title}}</span>
@@ -122,8 +122,9 @@
 <script>
 import axios from 'axios'
 import qs from 'qs'
-import { Swipe, SwipeItem } from 'mint-ui'
 import { APIYRL } from '@/common/api'
+import { Swipe, SwipeItem, Toast } from 'mint-ui'
+
 export default {
   data () {
     return {
@@ -147,6 +148,15 @@ export default {
     indexInit () {
       // Toast('提示信息')
     },
+    newDetail (id) {
+      // 新闻详情
+      this.$router.push({
+        path: '/news',
+        query: {
+          id: id
+        }
+      })
+    },
     _getBanner () {
       let articleInfo = qs.stringify({
         'rollingType': 1
@@ -158,7 +168,7 @@ export default {
         if (response.data.code === 0) {
           this.bannerArr = response.data.result
         } else {
-          // Toast('查询失败')
+          Toast('查询失败')
         }
       })
     },
@@ -169,7 +179,7 @@ export default {
         if (response.data.code === 0) {
           this.listData = response.data.result.data
         } else {
-          // Toast('查询失败')
+          Toast('查询失败')
         }
       })
     },
@@ -180,7 +190,7 @@ export default {
         if (response.data.code === 0) {
           this.industry = response.data.result.data
         } else {
-          // Toast('查询失败')
+          Toast('查询失败')
         }
       })
     },
@@ -195,7 +205,7 @@ export default {
             console.log(this.deData)
           }
         } else {
-          // Toast('查询失败')
+          Toast('查询失败')
         }
       })
     },
@@ -203,13 +213,12 @@ export default {
       axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=41&pageSize=4&pageNo=1`, {
         method: 'GET'
       }).then(response => {
-        console.log(response.data)
         if (response.data.code === 0) {
           if (response.data.result.data.length > 0) {
             this.caseData = [...response.data.result.data]
           }
         } else {
-          // Toast('查询失败')
+          Toast('查询失败')
         }
       })
     }
