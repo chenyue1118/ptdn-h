@@ -36,7 +36,7 @@ export default {
         'lable': '解决方案',
         'nameen': 'ABOUT  US'
       }, {
-        'name': 'product',
+        'name': 'case',
         'lable': '产品案例',
         'nameen': 'ABOUT  US'
       }, {
@@ -83,14 +83,16 @@ export default {
       .name{
         display: block;
         height:50%;
-        padding-top: 20px;
+        padding-top: 10px;
+        line-height: 20px;
         font-size: 20px;
         color: #ffffff;
       }
       .nameen{
         display: block;
         height: 50%;
-        font-size: 18px;
+        line-height: 20px;
+        font-size: 16px;
         color: #b2b2b2;
       }
     }

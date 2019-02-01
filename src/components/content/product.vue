@@ -111,7 +111,7 @@ export default {
   width: 100%;
   .types{
     width: 100%;
-    padding: 16px 20px 18px 20px;
+    padding: 16px 0 18px 0;
     font-size: 0;
     .all{
       display: inline-block;
@@ -128,9 +128,11 @@ export default {
       width: 100%;
       height: 20px;
       font-size: 0;
+      text-align: center;
       .item{
         display: inline-block;
-        padding-right: 14px;
+        padding-left: 5px;
+        padding-right: 5px;
         height: 20px;
         line-height: 20px;
         font-size: 12px;
