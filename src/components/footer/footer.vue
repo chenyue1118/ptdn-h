@@ -1,10 +1,10 @@
 <template lang="html">
   <div class="footer" id="footerid">
     <i class="icon"></i>
-    <p class="con">普天动能 版权所有 © 2018 京ICP备18013903号</p>
-    <p class="con">海淀区西北旺东路十号院东区五号楼中关村软件园</p>
-    <p class="con">+86-312-6383339</p>
-    <p class="con">Powered by ruanjianyuan ©2018</p>
+    <p class="con">地址：银川市金凤区正源南街IBM</p>
+    <p class="con">邮编：750001</p>
+    <p class="con">电话：0951-8305007 15378972980</p>
+    <p class="con">版权所有：宁夏普天动能信息技术有限公司</p>
   </div>
 </template>
 

@@ -4,10 +4,10 @@
     <div class="con-image"></div>
     <div class="msg-wra">
       <h3 class="title">加入我们</h3>
-      <p class="msg">地址：海淀区西北旺东路十号院东区五号楼中关村软件园互联网创新中心</p>
-      <p class="msg">邮箱：beijing@ustc.edu.cn        </p>
-      <p class="msg">电话：010-66666666      传真：010-66666666</p>
-      <p class="msg">邮编：100100</p>
+      <p class="msg">地址：银川市金凤区正源南街IBM</p>
+      <p class="msg">邮箱：liangliang@nxptdn.com</p>
+      <p class="msg">电话：0951-8305007  15378972980</p>
+      <p class="msg">750001</p>
       <div class="map">
         <i class="map-img"></i>
       </div>
