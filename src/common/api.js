@@ -1,4 +1,4 @@
-export const APIYRL = 'http://139.129.203.44:8680'
+export const APIYRL = 'http://www.nxptdn.com/backup'
 export const COMMON = {
   getCookie (name) {
     let reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
