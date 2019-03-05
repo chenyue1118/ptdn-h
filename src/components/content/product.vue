@@ -5,9 +5,9 @@
       <!-- <h4 class="all">全部</h4> -->
       <ul class="items">
         <li class="item" :class="{active: index == 51}" @click="selectType(51)">智慧农业</li>
-        <li class="item" :class="{active: index == 52}" @click="selectType(52)">智慧农业温棚</li>
-        <li class="item" :class="{active: index == 53}" @click="selectType(53)">智慧农业大田</li>
-        <li class="item" :class="{active: index == 54}" @click="selectType(54)">智慧农业大田</li>
+        <li class="item" :class="{active: index == 52}" @click="selectType(52)">智慧农业大田</li>
+        <li class="item" :class="{active: index == 53}" @click="selectType(53)">智慧农业渔业</li>
+        <li class="item" :class="{active: index == 54}" @click="selectType(54)">智慧农业温棚</li>
       </ul>
     </div>
     <ul class="content">
