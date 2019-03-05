@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="profile">
+  <div class="profiles">
     <div class="banner">
       <mt-swipe :auto="5000">
        <mt-swipe-item class="items" v-for="(item, index) in bannerArr" :key="index">
@@ -15,7 +15,7 @@
     </div>
     <div class="brief">
       <h3 class="title">公司简介</h3>
-      <p class="con" v-html="comDataContent"></p>
+      <div class="con" v-html="comDataContent"></div>
     </div>
     <div class="business">
       <h3 class="title">主营业务</h3>
@@ -65,18 +65,18 @@
     <div class="platform">
       <h3 class="title">智慧农业物联网平台简介</h3>
       <p class="info" v-html="ptDataContent"></p>
-      <div class="wheel">
+      <div class="wheel" v-show="ptDataPictureUrl">
         <div class="item">
-          <img class="image" src="../../common/image/icon-profile-palt.jpg" alt="">
+          <img class="image" :src="ptDataPictureUrl" alt="">
         </div>
       </div>
     </div>
     <div class="platform">
       <h3 class="title">智慧农业物联网开放平台简介</h3>
       <p class="info" v-html="kfDataContent"></p>
-      <div class="wheel">
+      <div class="wheel" v-show="kfDataPictureUrl">
         <div class="item">
-          <img class="image" src="../../common/image/icon-profile-palt.jpg" alt="">
+          <img class="image" :src="kfDataPictureUrl" alt="">
         </div>
       </div>
     </div>
@@ -95,7 +95,9 @@ export default {
       comDataContent: '',
       zyData: [],
       ptDataContent: '',
-      kfDataContent: ''
+      ptDataPictureUrl: '',
+      kfDataContent: '',
+      kfDataPictureUrl: ''
     }
   },
   // created () {
@@ -147,11 +149,13 @@ export default {
             // this.ptData = response.data.result.data
             if (response.data.result.data && response.data.result.data.length > 0) {
               this.ptDataContent = response.data.result.data[0].content
+              this.ptDataPictureUrl = response.data.result.data[0].pictureUrl
             }
           } else if (index === 14) {
             // this.kfData = response.data.result.data
             if (response.data.result.data && response.data.result.data.length > 0) {
               this.kfDataContent = response.data.result.data[0].content
+              this.kfDataPictureUrl = response.data.result.data[0].pictureUrl
             }
           }
         } else {
@@ -167,8 +171,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.profile{
+<style lang="scss">
+.profiles{
   width: 100%;
   .banner{
     width: 100%;
@@ -178,7 +182,6 @@ export default {
       .image{
         display: block;
         width: 100%;
-        height: 218px;
       }
     }
   }
@@ -191,11 +194,16 @@ export default {
       font-weight: 600;
     }
     .con{
+      width: 100%;
       padding-bottom: 10px;
       line-height: 22px;
       font-size: 12px;
       color: #626262;
       font-family: "黑体";
+      img{
+        display: block;
+        width: 100%;
+      }
     }
   }
   .business{
@@ -283,6 +291,10 @@ export default {
       line-height: 24px;
       color: #626262;
       font-size: 12px;
+      img{
+        display: block;
+        width: 100%;
+      }
     }
     .wheel{
       width: 100%;

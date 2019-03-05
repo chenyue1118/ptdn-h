@@ -345,7 +345,8 @@ export default {
             box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.5);
             background: #fff;
             .con{
-              padding-bottom: 14px;
+              height: 23px;
+              line-height: 16px;
               font-size: 14px;
               color: #3a3a3a;
               text-align: left;

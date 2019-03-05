@@ -1,10 +1,10 @@
 <template lang="html">
-  <div class="news_">
+  <div class="news_h">
     <Mnav />
     <img class="banner" src="../../common/image/icon-company.jpg" alt="">
     <div class="content">
       <h3 class="title">{{newData.title}}</h3>
-      <p class="con" v-html="newData.content">
+      <div class="con" v-html="newData.contentMk">
         <!-- 秋日的中国科大校园，阳光明媚，一张张青春的面孔成为校园里的美丽风景。“科大今年招收本科生1860多人，这一数字多年来基本保持稳定。”中国科大教务处长周丛照介绍说。<br />
         这样的精彩纪录在学界众所周知：中国科大每1000名本科毕业生，就产生1名院士、700多名硕士博士。这个比例居全国高校之首。<br />
         “小而精”，正是科大的办学理念。60年来，中国科大的科技人才如雨后春笋，原创成果呈上升之势。这所地处中部省份安徽的“国字头”高校，在科教报国的道路上步履坚实、收获满满。<br />
@@ -18,7 +18,7 @@
         【中国科学报】“我奉献，我自信”<br />
         【中国新闻网】中国科大少年班学子：从来没把自己当“神童”<br />
         【China Daily】University celebrates 60th anniversary<br /> -->
-      </p>
+      </div>
     </div>
   </div>
 </template>
@@ -63,8 +63,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.news_{
+<style lang="scss">
+.news_h{
   width: 100%;
   .banner{
     display: block;
@@ -84,10 +84,13 @@ export default {
       border-bottom: 1px solid #c5c5c5;
     }
     .con{
+      width: 100%;
       padding-top: 14px;
       line-height: 24px;
       font-size: 12px;
       color: #626262;
+      word-break: break-all;
+      word-wrap: break-word;
     }
   }
 }
