@@ -4,15 +4,15 @@
       <mt-swipe :auto="5000">
        <mt-swipe-item class="items" v-for="(item, index) in bannerArr" :key="index">
          <img class="image" :src="item.picture" alt="">
-         <div class="item">
+         <!-- <div class="item">
            <h4 class="title">{{item.title}}</h4>
            <p class="con">2019年<br /> {{item.description}}</p>
          </div>
-         <span class="msg">普天动能   美好出行</span>
+         <span class="msg">普天动能   美好出行</span> -->
        </mt-swipe-item>
       </mt-swipe>
     </div>
-    <div class="company">
+    <div class="company" v-show="listData.length > 0">
       <div class="company-head">
         <h3 class="title">COMPANY NEWS</h3>
         <i class="line"></i>
@@ -198,11 +198,9 @@ export default {
       axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=31&pageSize=3&pageNo=1`, {
         method: 'GET'
       }).then(response => {
-        console.log(response.data)
         if (response.data.code === 0) {
           if (response.data.result.data.length > 0) {
             this.deData = [...response.data.result.data]
-            console.log(this.deData)
           }
         } else {
           Toast('查询失败')

@@ -12,7 +12,10 @@
     </div>
     <ul class="content">
       <li class="item" v-for="(item, index) in deData" :key="index" @click="newDetail(item.id)">
-        <img class="image" src="../../common/image/icon-more-news.jpg" alt="">
+        <!-- <img class="image" src="../../common/image/icon-more-news.jpg" alt=""> -->
+        <div class="image-wra">
+          <img class="image" :src="item.pictureUrl" alt="">
+        </div>
         <h3 class="title">{{item.title}}</h3>
         <span class="info">
           项目简介<br />{{item.description}}
@@ -156,9 +159,15 @@ export default {
       &:nth-child(2n+1){
         margin-right: 4%;
       }
+      .image-wra{
+        height: 120px;
+      }
       .image{
         display: block;
-        width: 100%;
+        width: auto;
+        max-width: 100%;
+        max-height: 120px;
+        margin: 10px auto;
       }
       .title{
         width: 98%;
