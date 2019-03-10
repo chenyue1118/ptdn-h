@@ -22,30 +22,6 @@
         </span>
         <a class="btn" href="javascript:;">进一步了解</a>
       </li>
-      <!-- <li class="item">
-        <img class="image" src="../../common/image/icon-more-news.jpg" alt="">
-        <h3 class="title">123项目</h3>
-        <span class="info">
-          项目简介<br />111111111111111111
-        </span>
-        <a class="btn" href="javascript:;">进一步了解</a>
-      </li>
-      <li class="item">
-        <img class="image" src="../../common/image/icon-more-news.jpg" alt="">
-        <h3 class="title">123项目</h3>
-        <span class="info">
-          项目简介<br />111111111111111111
-        </span>
-        <a class="btn" href="javascript:;">进一步了解</a>
-      </li>
-      <li class="item">
-        <img class="image" src="../../common/image/icon-more-news.jpg" alt="">
-        <h3 class="title">123项目</h3>
-        <span class="info">
-          项目简介<br />111111111111111111
-        </span>
-        <a class="btn" href="javascript:;">进一步了解</a>
-      </li> -->
     </ul>
     <div class="no-data" v-if="deData.length == 0">
       暂无数据

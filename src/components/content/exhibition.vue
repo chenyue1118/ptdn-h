@@ -184,6 +184,7 @@ export default {
       }
       .info{
         display: inline-block;
+        min-height: 116px;
         padding-left: 10px;
         padding-bottom: 22px;
         line-height: 24px;

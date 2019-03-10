@@ -5,6 +5,12 @@
        <mt-swipe-item class="items" v-for="(item, index) in bannerArr" :key="index">
          <img class="image" :src="item.picture">
        </mt-swipe-item>
+       <!-- <mt-swipe-item class="items">
+         <img class="image" src="../../common/image/banner-bg1.jpg">
+       </mt-swipe-item>
+       <mt-swipe-item class="items">
+         <img class="image" src="../../common/image/banner-bg1.jpg">
+       </mt-swipe-item> -->
       </mt-swipe>
     </div>
     <div class="brief">
@@ -13,13 +19,47 @@
     </div>
     <div class="business">
       <h3 class="title">主营业务</h3>
-      <ul class="items" @click="businessDetail">
-        <li class="item" v-for="(item, index) in zyData" v-if="index<1" :key="index">
+      <ul class="items">
+        <li class="item" v-for="(item, index) in zyData" :key="index">
           <i class="icon"></i>
           <h5 class="tit">{{item.title}}</h5>
           <span class="tic" v-html="item.content"></span>
+          <!-- <span class="tic">大规模实时处理平台</span>
+          <span class="tic">多个维度最佳方案匹配</span>
+          <span class="tic">强大的计算能力</span>
+          <span class="tic">领先的服务器规模</span> -->
           <span class="bg"></span>
         </li>
+        <!-- <li class="item">
+          <i class="icon"></i>
+          <h5 class="tit">农业技术</h5>
+          <span class="tic">确保7天24小时可靠云心</span>
+          <span class="tic">大规模实时处理平台</span>
+          <span class="tic">多个维度最佳方案匹配</span>
+          <span class="tic">强大的计算能力</span>
+          <span class="tic">领先的服务器规模</span>
+          <span class="bg"></span>
+        </li>
+        <li class="item">
+          <i class="icon"></i>
+          <h5 class="tit">农业技术</h5>
+          <span class="tic">确保7天24小时可靠云心</span>
+          <span class="tic">大规模实时处理平台</span>
+          <span class="tic">多个维度最佳方案匹配</span>
+          <span class="tic">强大的计算能力</span>
+          <span class="tic">领先的服务器规模</span>
+          <span class="bg"></span>
+        </li>
+        <li class="item">
+          <i class="icon"></i>
+          <h5 class="tit">农业技术</h5>
+          <span class="tic">确保7天24小时可靠云心</span>
+          <span class="tic">大规模实时处理平台</span>
+          <span class="tic">多个维度最佳方案匹配</span>
+          <span class="tic">强大的计算能力</span>
+          <span class="tic">领先的服务器规模</span>
+          <span class="bg"></span>
+        </li> -->
       </ul>
     </div>
     <div class="platform">
@@ -27,11 +67,11 @@
       <p class="info" v-html="ptDataContent"></p>
       <div class="wheel" v-show="ptDataPictureUrl">
         <div class="item">
-          <!-- <img class="image" :src="ptDataPictureUrl" alt=""> -->
+          <img class="image" :src="ptDataPictureUrl" alt="">
         </div>
       </div>
     </div>
-    <div class="platform" v-show="kfDataContent">
+    <div class="platform">
       <h3 class="title">智慧农业物联网开放平台简介</h3>
       <p class="info" v-html="kfDataContent"></p>
       <div class="wheel" v-show="kfDataPictureUrl">
@@ -79,11 +119,6 @@ export default {
     })
   },
   methods: {
-    businessDetail () {
-      this.$router.push({
-        path: '/businessDetail'
-      })
-    },
     _getBanner () {
       let articleInfo = qs.stringify({
         'rollingType': 1
@@ -152,7 +187,6 @@ export default {
   }
   .brief{
     padding: 48px;
-    padding: 20px 24px;
     .title{
       height: 40px;
       font-size: 20px;
@@ -176,11 +210,11 @@ export default {
     position: relative;
     width: 100%;
     padding: 40px 10px 56px 10px;
-    padding: 48px;
     background: #272937;
     z-index: 0;
     .title{
       height: 60px;
+      padding-left: 12px;
       color: #fff;
       font-size: 20px;
       font-weight: 600;
@@ -191,7 +225,7 @@ export default {
       .item{
         position: relative;
         display: inline-block;
-        width: 100%;
+        width: 48%;
         background: #fff;
         padding: 24px 0 32px 0;
         margin-bottom: 4px;
@@ -220,9 +254,10 @@ export default {
         }
         .tic{
           display: block;
-          width: 92%;
+          width: 80%;
+          height: 100px;
           overflow: hidden;
-          line-height: 24px;
+          line-height: 20px;
           font-size: 12px;
           color: #666666;
           padding-left: 16%;

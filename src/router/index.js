@@ -8,6 +8,7 @@ import Morenews from '@/components/content/morenews'
 import Product from '@/components/content/product'
 import Case from '@/components/content/case'
 import Exhibition from '@/components/content/exhibition'
+import BusinessDetail from '@/components/content/businessDetail'
 
 Vue.use(Router)
 
@@ -49,6 +50,10 @@ export default new Router({
       path: '/case',
       name: 'Case',
       component: Case
+    }, {
+      path: '/businessDetail',
+      name: 'BusinessDetail',
+      component: BusinessDetail
     }
   ]
 })

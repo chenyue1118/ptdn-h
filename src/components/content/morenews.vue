@@ -1,38 +1,6 @@
 <template lang="html">
   <div class="more_">
     <Mnav />
-    <!-- <ul class="items">
-      <li class="item">
-        <img class="image" src="../../common/image/icon-more-news.jpg" >
-        <div class="con">
-          <div class="time">
-            <span class="num">14</span>
-            <span class="hou">2018-11</span>
-          </div>
-          <h3 class="tit">中国科学技术大学中国科学技术大学磋商公告</h3>
-        </div>
-      </li>
-      <li class="item">
-        <img class="image" src="../../common/image/icon-more-news.jpg" >
-        <div class="con">
-          <div class="time">
-            <span class="num">14</span>
-            <span class="hou">2018-11</span>
-          </div>
-          <h3 class="tit">中国科学技术大学中国科学技术大学磋商公告</h3>
-        </div>
-      </li>
-      <li class="item">
-        <img class="image" src="../../common/image/icon-more-news.jpg" >
-        <div class="con">
-          <div class="time">
-            <span class="num">14</span>
-            <span class="hou">2018-11</span>
-          </div>
-          <h3 class="tit">中国科学技术大学中国科学技术大学磋商公告</h3>
-        </div>
-      </li>
-    </ul> -->
     <mt-loadmore :bottom-method="loadBottom" @bottom-status-change="handleTopChange">
       <ul class="items">
         <li class="item" v-for="(item, index) in newList" :key="index" @click="newDetail(item)">
